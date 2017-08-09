@@ -83,7 +83,7 @@ module ActiveRecord
             type_ = 'geometry' if type_.to_s == 'spatial'
             type_ = type_.to_s.gsub('_', '').upcase
           end
-          super(type_, limit_, precision_, scale_, unsigned_)
+          super(type_)
         end
 
 
