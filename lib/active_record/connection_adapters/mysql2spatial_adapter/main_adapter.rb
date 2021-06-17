@@ -150,7 +150,7 @@ module ActiveRecord
 
         protected
 
-        def initialize_type_map(m)
+        def initialize_type_map(m = type_map)
           super
           register_class_with_limit m, %r(geometry)i, Type::Spatial
           m.alias_type %r(point)i, 'geometry'
@@ -159,6 +159,11 @@ module ActiveRecord
 
         end
 
+        def type_map 
+          @type_map ||= Type::TypeMap.new.tap do |mapping|
+             initialize_type_map(mapping)
+           end 
+        end
 
       end
     end
